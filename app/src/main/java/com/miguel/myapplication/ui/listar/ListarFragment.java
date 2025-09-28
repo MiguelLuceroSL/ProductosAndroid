@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +23,7 @@ public class ListarFragment extends Fragment {
     private RecyclerView recyclerView;
     private ProductoAdapter adapter;
     private ProductoViewModel viewModel;
+    private TextView emptyView;
 
     @Nullable
     @Override
@@ -31,6 +33,7 @@ public class ListarFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_listar, container, false);
 
         recyclerView = v.findViewById(R.id.recyclerView);
+        emptyView   = v.findViewById(R.id.emptyView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         adapter = new ProductoAdapter(new ArrayList<>());
@@ -40,6 +43,13 @@ public class ListarFragment extends Fragment {
 
         viewModel.getMutableProductos().observe(getViewLifecycleOwner(), productos -> {
             adapter.updateList(productos);
+            if (productos.isEmpty()) {
+                emptyView.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
+            } else {
+                emptyView.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
         });
 
         return v;

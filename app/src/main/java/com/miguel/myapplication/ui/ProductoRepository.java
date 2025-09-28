@@ -2,6 +2,8 @@ package com.miguel.myapplication.ui;
 
 import android.util.Log;
 
+import com.miguel.myapplication.MainActivity;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -21,6 +23,7 @@ public class ProductoRepository {
             }
         }
         productos.add(p);
+        MainActivity.productosEstaticos.add(p);
         return true;
     }
 }

@@ -10,11 +10,14 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.miguel.myapplication.ui.Producto;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
+    public static final ArrayList<Producto> productosEstaticos = new ArrayList<>();
 
     private AppBarConfiguration appBarConfiguration;
     private NavController navController;

@@ -6,6 +6,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.miguel.myapplication.R;
+
 import java.util.ArrayList;
 
 public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHolder> {
@@ -25,15 +28,16 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(android.R.layout.simple_list_item_2, parent, false);
+                .inflate(R.layout.item_producto, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Producto p = productos.get(position);
-        holder.text1.setText(p.getDescripcion());
-        holder.text2.setText("Código: " + p.getCodigo() + " - Precio: $" + p.getPrecio());
+        holder.tvDescripcion.setText(p.getDescripcion());
+        holder.tvCodigoPrecio.setText(
+                "Código: " + p.getCodigo() + "  •  Precio: $" + p.getPrecio());
     }
 
     @Override
@@ -42,12 +46,12 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView text1, text2;
+        TextView tvDescripcion, tvCodigoPrecio;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            text1 = itemView.findViewById(android.R.id.text1);
-            text2 = itemView.findViewById(android.R.id.text2);
+            tvDescripcion = itemView.findViewById(R.id.tvDescripcion);
+            tvCodigoPrecio = itemView.findViewById(R.id.tvCodigoPrecio);
         }
     }
 }
