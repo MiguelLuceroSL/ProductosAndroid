@@ -9,7 +9,7 @@ public class CargarViewModel extends AndroidViewModel {
     private ProductoRepository repo = new ProductoRepository();
 
     private MutableLiveData<String> mutableMensaje;
-    private MutableLiveData<Void> mutableLimpiarCampos; // usamos Void
+    private MutableLiveData<Void> mutableLimpiarCampos;
 
     public CargarViewModel(@NonNull Application application) {
         super(application);
