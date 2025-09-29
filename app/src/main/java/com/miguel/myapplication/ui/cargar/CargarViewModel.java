@@ -48,7 +48,7 @@ public class CargarViewModel extends AndroidViewModel {
 
         if (repo.agregarProducto(p)) {
             getMutableMensaje().setValue("Producto agregado");
-            getMutableLimpiarCampos().setValue(null); // evento de limpiar
+            getMutableLimpiarCampos().setValue(null);
         } else {
             getMutableMensaje().setValue("Código repetido");
         }
