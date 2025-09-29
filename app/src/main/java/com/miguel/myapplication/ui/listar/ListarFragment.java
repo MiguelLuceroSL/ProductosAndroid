@@ -43,13 +43,8 @@ public class ListarFragment extends Fragment {
 
         viewModel.getMutableProductos().observe(getViewLifecycleOwner(), productos -> {
             adapter.updateList(productos);
-            if (productos.isEmpty()) {
-                emptyView.setVisibility(View.VISIBLE);
-                recyclerView.setVisibility(View.GONE);
-            } else {
-                emptyView.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
-            }
+            emptyView.setVisibility(productos.isEmpty() ? View.VISIBLE : View.GONE);
+            recyclerView.setVisibility(productos.isEmpty() ? View.GONE : View.VISIBLE);
         });
 
         return v;

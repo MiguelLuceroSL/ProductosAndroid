@@ -37,12 +37,12 @@ public class CargarFragment extends Fragment {
 
         viewModel.getMutableMensaje().observe(getViewLifecycleOwner(), mensaje -> {
             Toast.makeText(getContext(), mensaje, Toast.LENGTH_SHORT).show();
+        });
 
-            if (mensaje.equals("Producto agregado")) {
-                etCodigo.setText("");
-                etDescripcion.setText("");
-                etPrecio.setText("");
-            }
+        viewModel.getMutableLimpiarCampos().observe(getViewLifecycleOwner(), unused -> {
+            etCodigo.setText("");
+            etDescripcion.setText("");
+            etPrecio.setText("");
         });
 
         btnGuardar.setOnClickListener(view -> {
