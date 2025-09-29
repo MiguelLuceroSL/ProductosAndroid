@@ -1,21 +1,23 @@
-package com.miguel.myapplication.ui;
+package com.miguel.myapplication.ui.listar;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.miguel.myapplication.R;
+import com.miguel.myapplication.modelo.Producto;
 
 import java.util.ArrayList;
 
-public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHolder> {
+public class ListarAdapter extends RecyclerView.Adapter<ListarAdapter.ViewHolder> {
 
     private ArrayList<Producto> productos;
 
-    public ProductoAdapter(ArrayList<Producto> productos) {
+    public ListarAdapter(ArrayList<Producto> productos) {
         this.productos = productos;
     }
 

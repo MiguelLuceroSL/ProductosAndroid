@@ -14,13 +14,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.miguel.myapplication.R;
-import com.miguel.myapplication.ui.Producto;
-import com.miguel.myapplication.ui.ProductoViewModel;
 
 public class CargarFragment extends Fragment {
+
     private EditText etCodigo, etDescripcion, etPrecio;
     private Button btnGuardar;
-    private ProductoViewModel viewModel;
+    private CargarViewModel viewModel;
 
     @Nullable
     @Override
@@ -34,32 +33,24 @@ public class CargarFragment extends Fragment {
         etPrecio = v.findViewById(R.id.etPrecio);
         btnGuardar = v.findViewById(R.id.btnGuardar);
 
-        viewModel = new ViewModelProvider(requireActivity()).get(ProductoViewModel.class);
+        viewModel = new ViewModelProvider(this).get(CargarViewModel.class);
+
+        viewModel.getMutableMensaje().observe(getViewLifecycleOwner(), mensaje -> {
+            Toast.makeText(getContext(), mensaje, Toast.LENGTH_SHORT).show();
+
+            if (mensaje.equals("Producto agregado")) {
+                etCodigo.setText("");
+                etDescripcion.setText("");
+                etPrecio.setText("");
+            }
+        });
 
         btnGuardar.setOnClickListener(view -> {
             String codigo = etCodigo.getText().toString().trim();
             String descripcion = etDescripcion.getText().toString().trim();
-            if (!descripcion.isEmpty()) {
-                descripcion = descripcion.substring(0, 1).toUpperCase() + descripcion.substring(1);
-            }
             String precioStr = etPrecio.getText().toString().trim();
 
-            if (codigo.isEmpty() || descripcion.isEmpty() || precioStr.isEmpty()) {
-                Toast.makeText(getContext(), "Complete todos los campos", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            double precio = Double.parseDouble(precioStr);
-            Producto p = new Producto(codigo, descripcion, precio);
-
-            if (viewModel.agregarProducto(p)) {
-                Toast.makeText(getContext(), "Producto agregado", Toast.LENGTH_SHORT).show();
-                etCodigo.setText("");
-                etDescripcion.setText("");
-                etPrecio.setText("");
-            } else {
-                Toast.makeText(getContext(), "Código repetido", Toast.LENGTH_SHORT).show();
-            }
+            viewModel.agregarProducto(codigo, descripcion, precioStr);
         });
 
         return v;

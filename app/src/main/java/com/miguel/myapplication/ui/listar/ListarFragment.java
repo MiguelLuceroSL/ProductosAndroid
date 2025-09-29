@@ -14,15 +14,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.miguel.myapplication.R;
-import com.miguel.myapplication.ui.ProductoAdapter;
-import com.miguel.myapplication.ui.ProductoViewModel;
+import com.miguel.myapplication.modelo.Producto;
 
 import java.util.ArrayList;
 
 public class ListarFragment extends Fragment {
+
     private RecyclerView recyclerView;
-    private ProductoAdapter adapter;
-    private ProductoViewModel viewModel;
+    private ListarAdapter adapter;
+    private ListarViewModel viewModel;
     private TextView emptyView;
 
     @Nullable
@@ -36,10 +36,10 @@ public class ListarFragment extends Fragment {
         emptyView   = v.findViewById(R.id.emptyView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        adapter = new ProductoAdapter(new ArrayList<>());
+        adapter = new ListarAdapter(new ArrayList<Producto>());
         recyclerView.setAdapter(adapter);
 
-        viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication()).create(ProductoViewModel.class);
+        viewModel = new ViewModelProvider(this).get(ListarViewModel.class);
 
         viewModel.getMutableProductos().observe(getViewLifecycleOwner(), productos -> {
             adapter.updateList(productos);

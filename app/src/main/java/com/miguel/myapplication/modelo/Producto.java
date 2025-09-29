@@ -1,4 +1,4 @@
-package com.miguel.myapplication.ui;
+package com.miguel.myapplication.modelo;
 
 public class Producto {
     private String codigo;

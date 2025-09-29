@@ -10,16 +10,13 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
-import com.miguel.myapplication.ui.Producto;
+import com.miguel.myapplication.modelo.Producto;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
-    //tambien lo implemente en el ListarFragment listar porque es mejor practica
-    //pero como la consigna dice un array en el main, y cargarlo al array del main
-    //lo cargo allá tambien a este array, pero yo uso el del ListarFragment profe
     public static ArrayList<Producto> productosEstaticos = new ArrayList<>();
 
     private AppBarConfiguration appBarConfiguration;

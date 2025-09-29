@@ -1,29 +1,25 @@
-package com.miguel.myapplication.ui;
-
-import android.util.Log;
+package com.miguel.myapplication.repository;
 
 import com.miguel.myapplication.MainActivity;
-
+import com.miguel.myapplication.modelo.Producto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-
 public class ProductoRepository {
-    private static ArrayList<Producto> productos = new ArrayList<>();
 
     public ArrayList<Producto> getProductos() {
-        Collections.sort(productos, Comparator.comparing(Producto::getDescripcion));
-        return productos;
+        return MainActivity.productosEstaticos;
     }
 
     public boolean agregarProducto(Producto p) {
-        for (Producto prod : productos) {
+        for (Producto prod : MainActivity.productosEstaticos) {
             if (prod.getCodigo().equals(p.getCodigo())) {
-                return false; //codigo repetido
+                return false;
             }
         }
-        productos.add(p);
         MainActivity.productosEstaticos.add(p);
+        Collections.sort(MainActivity.productosEstaticos,
+                Comparator.comparing(Producto::getDescripcion));
         return true;
     }
 }
