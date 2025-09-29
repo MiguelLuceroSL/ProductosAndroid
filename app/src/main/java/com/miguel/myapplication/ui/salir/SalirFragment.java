@@ -23,6 +23,6 @@ public class SalirFragment extends Fragment {
                 .setNegativeButton("No", null)
                 .show();
 
-        return new View(getContext()); //vista vacia
+        return new View(getContext());
     }
 }

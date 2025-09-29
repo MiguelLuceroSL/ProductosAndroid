@@ -38,39 +38,31 @@ public class DetalleFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(DetalleViewModel.class);
 
-        // Observa mensaje
         viewModel.getMutableMensaje().observe(getViewLifecycleOwner(), mensaje -> {
             Toast.makeText(getContext(), mensaje, Toast.LENGTH_SHORT).show();
         });
 
-        // Observa evento de navegación atrás (cuando eliminas producto)
         viewModel.getMutableVolverAlListar().observe(getViewLifecycleOwner(), volver -> {
-            if (volver != null && volver) {
                 NavOptions options = new NavOptions.Builder()
                         .setPopUpTo(R.id.nav_listar, false)
                         .build();
                 Navigation.findNavController(v).navigate(R.id.nav_listar, null, options);
-            }
+
         });
 
-        // Cargar datos que vienen por argumentos
         Bundle args = getArguments();
-        if (args != null) {
-            String codigo = args.getString("codigo");
-            String descripcion = args.getString("descripcion");
-            double precio = args.getDouble("precio");
+        String codigo = args.getString("codigo");
+        String descripcion = args.getString("descripcion");
+        double precio = args.getDouble("precio");
 
-            tvCodigo.setText("Código: " + codigo);
-            tvDescripcion.setText("Descripción: " + descripcion);
-            tvPrecio.setText("Precio: $" + precio);
+        tvCodigo.setText("Código: " + codigo);
+        tvDescripcion.setText("Descripción: " + descripcion);
+        tvPrecio.setText("Precio: $" + precio);
 
-            // Acción eliminar
-            btnEliminar.setOnClickListener(view -> {
-                viewModel.eliminarProducto(codigo);
-            });
-        }
+        btnEliminar.setOnClickListener(view -> {
+            viewModel.eliminarProducto(codigo);
+        });
 
-        // Acción volver (si solo querés volver a la lista manualmente)
         btnVolver.setOnClickListener(view -> {
             NavOptions options = new NavOptions.Builder()
                     .setPopUpTo(R.id.nav_listar, false)

@@ -15,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.miguel.myapplication.R;
-import com.miguel.myapplication.modelo.Producto;
 
 public class EliminarFragment extends Fragment {
 
